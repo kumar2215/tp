@@ -5,14 +5,15 @@ skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
 Class "{abstract}\nCommand" as Command
-Class XYZCommand
 Class FindDealCommand
+Class DeleteClientCommand
 
-package "Parser classes"{
+package "Parser classes" {
 Class "<<interface>>\nParser" as Parser
 Class AddressBookParser
-Class XYZCommandParser
 Class FindDealCommandParser
+Class DeleteClientCommandParser
+Class "{abstract}\nDeleteCommandParser" as DeleteCommandParser
 Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
@@ -23,26 +24,33 @@ Class Prefix
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> AddressBookParser
 
-AddressBookParser .down.> XYZCommandParser: <<create>>
-AddressBookParser .down.> FindDealCommandParser: <<create>>
+AddressBookParser .down.> FindDealCommandParser : <<create>>
+AddressBookParser .down.> DeleteClientCommandParser : <<create>>
 
-XYZCommandParser ..> XYZCommand : <<create>>
 FindDealCommandParser ..> FindDealCommand : <<create>>
+DeleteClientCommandParser ..> DeleteClientCommand : <<create>>
 AddressBookParser ..> Command : <<use>>
-XYZCommandParser .up.|> Parser
 FindDealCommandParser .up.|> Parser
-XYZCommandParser ..> ArgumentMultimap
+DeleteClientCommandParser -up-|> DeleteCommandParser
+DeleteCommandParser .up.|> Parser
+
 FindDealCommandParser ..> ArgumentMultimap
-XYZCommandParser ..> ArgumentTokenizer
+DeleteClientCommandParser ..> ArgumentMultimap
+
 FindDealCommandParser ..> ArgumentTokenizer
+DeleteClientCommandParser ..> ArgumentTokenizer
+
 ArgumentTokenizer .left.> ArgumentMultimap
-XYZCommandParser ..> CliSyntax
+
 FindDealCommandParser ..> CliSyntax
+DeleteClientCommandParser ..> CliSyntax
+
 CliSyntax ..> Prefix
-XYZCommandParser ..> ParserUtil
 FindDealCommandParser ..> ParserUtil
+DeleteClientCommandParser ..> ParserUtil
+
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
-XYZCommand -up-|> Command
 FindDealCommand -up-|> Command
+DeleteClientCommand -up-|> Command
 @enduml

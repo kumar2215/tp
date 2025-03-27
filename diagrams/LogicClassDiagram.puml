@@ -6,17 +6,14 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic as LogicPackage {
 
-package "Parser Classes" as ParserClasses {
-    Class "<<interface>>\nParser" as Parser
-    Class "{abstract}\nDeleteCommandParser" as DeleteCommandParser
-    Class DeleteClientCommandParser
+package "Parser Classes" as ParserClasses{
 }
-
 Class XYZCommand
 Class FindDealCommand
 Class ListDealCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+
 
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager
@@ -37,7 +34,6 @@ LogicManager -right->"1" ParserClasses
 ParserClasses ..> XYZCommand : <<create>>
 ParserClasses ..> FindDealCommand : <<create>>
 ParserClasses ..> ListDealCommand : <<create>>
-ParserClasses ..> DeleteClientCommandParser : <<create>>
 
 XYZCommand -up-|> Command
 FindDealCommand -up-|> Command
@@ -54,8 +50,4 @@ note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult : <<create>>
-
-DeleteClientCommandParser -up-|> DeleteCommandParser
-DeleteCommandParser .up.|> Parser
-
 @enduml
