@@ -8,8 +8,10 @@ Package Model as ModelPackage <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nPredicate" as Predicate
 Class AddressBook
 Class ModelManager
+Class PropertyNameContainsKeywordsPredicate
 Class UserPrefs
 
 Class UniqueClientList
@@ -53,6 +55,7 @@ Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
+PropertyNameContainsKeywordsPredicate -up-|> Predicate
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueClientList
@@ -89,6 +92,7 @@ Property *--> Size
 Property *--> Price
 Property *--> Description
 Property *--> Address
+Property *--> ClientName
 
 Client -[hidden]up--> I
 UniqueClientList -[hidden]right-> I
