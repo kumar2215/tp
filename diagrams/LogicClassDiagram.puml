@@ -11,6 +11,8 @@ package "Parser Classes" as ParserClasses{
 Class XYZCommand
 Class FindDealCommand
 Class ListDealCommand
+Class AddDealCommand
+Class UpdateDealCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 
@@ -34,10 +36,14 @@ LogicManager -right->"1" ParserClasses
 ParserClasses ..> XYZCommand : <<create>>
 ParserClasses ..> FindDealCommand : <<create>>
 ParserClasses ..> ListDealCommand : <<create>>
+ParserClasses ..> AddDealCommand : <<create>>
+ParserClasses ..> UpdateDealCommand : <<create>>
 
 XYZCommand -up-|> Command
 FindDealCommand -up-|> Command
 ListDealCommand -up-|> Command
+AddDealCommand -up-|> Command
+UpdateDealCommand -up-|> Command
 LogicManager .left.> Command : <<call>>
 
 LogicManager --> Model
