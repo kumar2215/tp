@@ -28,15 +28,15 @@ AddressBookParser .down.> AddClientCommandParser : <<create>>
 AddressBookParser .down.> EditEventCommandParser : <<create>>
 AddressBookParser .down.> DeletePropertyCommandParser : <<create>>
 
-FindDealCommandParser ..> ArgumentMultimap
-AddClientCommandParser ..> ArgumentMultimap
-EditEventCommandParser ..> ArgumentMultimap
-DeletePropertyCommandParser ..> ArgumentMultimap
+FindDealCommandParser ...> ArgumentMultimap
+AddClientCommandParser ...> ArgumentMultimap
+EditEventCommandParser ...> ArgumentMultimap
+DeletePropertyCommandParser ...> ArgumentMultimap
 
 FindDealCommandParser ..> ArgumentTokenizer
-AddClientCommandParser ..> ArgumentTokenizer
-EditEventCommandParser ..> ArgumentTokenizer
-DeletePropertyCommandParser ..> ArgumentTokenizer
+AddClientCommandParser ...> ArgumentTokenizer
+EditEventCommandParser ...> ArgumentTokenizer
+DeletePropertyCommandParser ...> ArgumentTokenizer
 
 ArgumentTokenizer .left.> ArgumentMultimap
 
@@ -50,7 +50,7 @@ CliSyntax ..> Prefix
 FindDealCommandParser ..> ParserUtil
 AddClientCommandParser ..> ParserUtil
 EditEventCommandParser ..> ParserUtil
-DeletePropertyCommandParser ..> ParserUtil
+DeletePropertyCommandParser ...> ParserUtil
 
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix

@@ -54,6 +54,8 @@
         "storage-component": "Storage component",
         "common-classes": "Common classes",
         "implementation": "Implementation",
+        "feature-1-autocompletion-of-command-names-and-prefixes": "Feature 1: Autocompletion of command names and prefixes",
+        "feature-2-enabling-the-conjunction-and-and-disjunction-or-of-filtering-parameters-for-find-commands": "Feature 2: Enabling the conjunction (AND) and disjunction (OR) of filtering parameters for find commands",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
         "appendix-requirements": "Appendix: Requirements",
         "product-scope": "Product scope",
