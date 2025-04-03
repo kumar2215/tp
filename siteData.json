@@ -42,6 +42,9 @@
       "headings": {
         "reconnect-developer-guide": "REconnect Developer Guide",
         "acknowledgements": "Acknowledgements",
+        "java-dependencies": "Java Dependencies",
+        "documentation-tools": "Documentation Tools",
+        "badges": "Badges",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
         "architecture": "Architecture",
@@ -51,8 +54,6 @@
         "storage-component": "Storage component",
         "common-classes": "Common classes",
         "implementation": "Implementation",
-        "proposed-undo-redo-feature": "[Proposed] Undo/redo feature",
-        "proposed-data-archiving": "[Proposed] Data archiving",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
         "appendix-requirements": "Appendix: Requirements",
         "product-scope": "Product scope",
@@ -61,9 +62,7 @@
         "non-functional-requirements": "Non-Functional Requirements",
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
-        "launch-and-shutdown": "Launch and shutdown",
-        "deleting-a-person": "Deleting a person",
-        "saving-data": "Saving data"
+        "launch-and-shutdown": "Launch and shutdown"
       },
       "headingKeywords": {}
     },
