@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package "Parser classes" {
+  Class "<<interface>>\nParser" as Parser
+  Class AddressBookParser
+  Class FindDealCommandParser
+  Class AddClientCommandParser
+  Class EditEventCommandParser
+  Class DeletePropertyCommandParser
+  Class CliSyntax
+  Class ParserUtil
+  Class ArgumentMultimap
+  Class ArgumentTokenizer
+  Class Prefix
+}
+
+FindDealCommandParser .up.|> Parser
+AddClientCommandParser .up.|> Parser
+EditEventCommandParser .up.|> Parser
+DeletePropertyCommandParser -up-|> Parser
+
+AddressBookParser .down.> FindDealCommandParser : <<create>>
+AddressBookParser .down.> AddClientCommandParser : <<create>>
+AddressBookParser .down.> EditEventCommandParser : <<create>>
+AddressBookParser .down.> DeletePropertyCommandParser : <<create>>
+
+FindDealCommandParser ..> ArgumentMultimap
+AddClientCommandParser ..> ArgumentMultimap
+EditEventCommandParser ..> ArgumentMultimap
+DeletePropertyCommandParser ..> ArgumentMultimap
+
+FindDealCommandParser ..> ArgumentTokenizer
+AddClientCommandParser ..> ArgumentTokenizer
+EditEventCommandParser ..> ArgumentTokenizer
+DeletePropertyCommandParser ..> ArgumentTokenizer
+
+ArgumentTokenizer .left.> ArgumentMultimap
+
+FindDealCommandParser ..> CliSyntax
+AddClientCommandParser ..> CliSyntax
+EditEventCommandParser ..> CliSyntax
+DeletePropertyCommandParser ..> CliSyntax
+
+CliSyntax ..> Prefix
+
+FindDealCommandParser ..> ParserUtil
+AddClientCommandParser ..> ParserUtil
+EditEventCommandParser ..> ParserUtil
+DeletePropertyCommandParser ..> ParserUtil
+
+ParserUtil .down.> Prefix
+ArgumentTokenizer .down.> Prefix
+@enduml
