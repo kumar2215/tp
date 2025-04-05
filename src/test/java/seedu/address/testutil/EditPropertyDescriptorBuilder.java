@@ -3,11 +3,9 @@ package seedu.address.testutil;
 import java.util.Optional;
 
 import seedu.address.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
-import seedu.address.model.client.ClientName;
 import seedu.address.model.commons.Address;
 import seedu.address.model.commons.Price;
 import seedu.address.model.property.Description;
-import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
 import seedu.address.model.property.Size;
 
@@ -24,19 +22,6 @@ public class EditPropertyDescriptorBuilder {
 
     public EditPropertyDescriptorBuilder(EditPropertyDescriptor descriptor) {
         this.descriptor = new EditPropertyDescriptor(descriptor);
-    }
-
-    /**
-     * Returns an {@code EditPropertyDescriptor} with fields containing {@code property}'s details
-     */
-    public EditPropertyDescriptorBuilder(Property property) {
-        descriptor = new EditPropertyDescriptor();
-        descriptor.setPropertyName(property.getFullName());
-        descriptor.setAddress(property.getAddress());
-        descriptor.setPrice(property.getPrice());
-        descriptor.setSize(property.getSize());
-        descriptor.setDescription(property.getDescription());
-        descriptor.setOwner(property.getOwner());
     }
 
     /**
@@ -76,14 +61,6 @@ public class EditPropertyDescriptorBuilder {
      */
     public EditPropertyDescriptorBuilder withDescription(String description) {
         descriptor.setDescription(Optional.of(new Description(description)));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Owner} (ClientName) of the {@code EditPropertyDescriptor} that we are building.
-     */
-    public EditPropertyDescriptorBuilder withOwner(String ownerName) {
-        descriptor.setOwner(new ClientName(ownerName));
         return this;
     }
 

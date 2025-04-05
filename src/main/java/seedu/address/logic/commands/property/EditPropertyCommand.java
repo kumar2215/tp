@@ -2,8 +2,8 @@ package seedu.address.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
@@ -23,6 +23,7 @@ import seedu.address.logic.commands.EditDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientName;
 import seedu.address.model.commons.Address;
 import seedu.address.model.commons.Price;
@@ -43,7 +44,7 @@ public class EditPropertyCommand extends EditCommand<Property> {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_PROPERTY_NAME + "PROPERTY_NAME] "
-            + "[" + PREFIX_OWNER + "OWNER] "
+            + "[" + PREFIX_CLIENT_ID + "OWNER] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_PRICE + "PRICE (in S$ thousands)] "
             + "[" + PREFIX_SIZE + "SIZE (in square feet)] "
@@ -55,6 +56,7 @@ public class EditPropertyCommand extends EditCommand<Property> {
     public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Edited Property: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the address book.";
+    public static final String MESSAGE_INVALID_CLIENT_ID = "Invalid client ID.";
 
     private final EditPropertyDescriptor editPropertyDescriptor;
 
@@ -73,7 +75,7 @@ public class EditPropertyCommand extends EditCommand<Property> {
     public static void addCommandWord() {
         Prefix[] prefixes = {
             PREFIX_PROPERTY_NAME,
-            PREFIX_OWNER,
+            PREFIX_CLIENT_ID,
             PREFIX_ADDRESS,
             PREFIX_PRICE,
             PREFIX_SIZE,
@@ -92,7 +94,7 @@ public class EditPropertyCommand extends EditCommand<Property> {
         }
 
         Property propertyToEdit = lastShownList.get(index.getZeroBased());
-        Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor);
+        Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor, model);
 
         if (!propertyToEdit.isSameProperty(editedProperty) && model.hasProperty(editedProperty)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
@@ -108,8 +110,12 @@ public class EditPropertyCommand extends EditCommand<Property> {
      * edited with {@code editPropertyDescriptor}.
      */
     private static Property createEditedProperty(Property propertyToEdit,
-                                                 EditPropertyDescriptor editPropertyDescriptor) {
+                                                 EditPropertyDescriptor editPropertyDescriptor, Model model)
+                                                 throws CommandException {
         assert propertyToEdit != null;
+
+        ClientName updatedClientName;
+        List<Client> clientList = model.getFilteredClientList();
 
         PropertyName updatedPropertyName = editPropertyDescriptor.getPropertyName()
                 .orElse(propertyToEdit.getFullName());
@@ -118,11 +124,22 @@ public class EditPropertyCommand extends EditCommand<Property> {
         Optional<Size> updatedSize = editPropertyDescriptor.getSize().orElse(propertyToEdit.getSize());
         Optional<Description> updatedDescription = editPropertyDescriptor.getDescription()
                 .orElse(propertyToEdit.getDescription());
-        ClientName updatedOwner = editPropertyDescriptor.getOwner()
-                .orElse(propertyToEdit.getOwner());
+
+        Optional<Index> optionalClientId = editPropertyDescriptor.getOwner();
+        if (optionalClientId.isPresent()) {
+            Index clientId = optionalClientId.get();
+            int clientIdZeroBased = clientId.getZeroBased();
+            if (clientIdZeroBased >= clientList.size()) {
+                throw new CommandException(MESSAGE_INVALID_CLIENT_ID);
+            }
+            Client client = clientList.get(clientIdZeroBased);
+            updatedClientName = client.getFullName();
+        } else {
+            updatedClientName = propertyToEdit.getOwner();
+        }
 
         return new Property(updatedPropertyName, updatedAddress, updatedPrice, updatedSize, updatedDescription,
-                updatedOwner);
+                updatedClientName);
     }
 
     @Override
@@ -158,7 +175,7 @@ public class EditPropertyCommand extends EditCommand<Property> {
         private Price price;
         private Optional<Size> size;
         private Optional<Description> description;
-        private ClientName owner;
+        private Index owner;
 
         public EditPropertyDescriptor() {}
 
@@ -223,11 +240,11 @@ public class EditPropertyCommand extends EditCommand<Property> {
             return Optional.ofNullable(description);
         }
 
-        public void setOwner(ClientName owner) {
+        public void setOwner(Index owner) {
             this.owner = owner;
         }
 
-        public Optional<ClientName> getOwner() {
+        public Optional<Index> getOwner() {
             return Optional.ofNullable(owner);
         }
 

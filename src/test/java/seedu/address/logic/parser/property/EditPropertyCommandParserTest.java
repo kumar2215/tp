@@ -3,14 +3,12 @@ package seedu.address.logic.parser.property;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRICE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_MAPLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MAPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_MAPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_NAME_MAPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SIZE_MAPLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
@@ -48,15 +46,14 @@ public class EditPropertyCommandParserTest {
     }
 
     @Test
-    public void parse_allFieldsSpecified_success() {
+    public void parse_fieldsSpecified_success() {
         Index targetIndex = Index.fromOneBased(1);
         String userInput = targetIndex.getOneBased()
                 + " " + PREFIX_PROPERTY_NAME + VALID_PROPERTY_NAME_MAPLE
                 + " " + PREFIX_ADDRESS + VALID_ADDRESS_MAPLE
                 + " " + PREFIX_PRICE + VALID_PRICE_MAPLE
                 + " " + PREFIX_SIZE + VALID_SIZE_MAPLE
-                + " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MAPLE
-                + " " + PREFIX_OWNER + VALID_CLIENT_NAME_AMY;
+                + " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MAPLE;
 
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder()
                 .withPropertyName(VALID_PROPERTY_NAME_MAPLE)
@@ -64,7 +61,6 @@ public class EditPropertyCommandParserTest {
                 .withPrice(VALID_PRICE_MAPLE)
                 .withSize(VALID_SIZE_MAPLE)
                 .withDescription(VALID_DESCRIPTION_MAPLE)
-                .withOwner(VALID_CLIENT_NAME_AMY)
                 .build();
 
         EditPropertyCommand expectedCommand = new EditPropertyCommand(targetIndex, descriptor);

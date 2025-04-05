@@ -112,11 +112,10 @@ public class EditClientCommand extends EditCommand<Client> {
 
         if (optionalClientName.isPresent()) {
             ClientName oldClientName = clientToEdit.getFullName();
-            ClientName newClientName = optionalClientName.get();
 
             updateClientNameInDeals(oldClientName, index, lastShownDealList, model);
             updateClientNameInEvents(oldClientName, index, lastShownEventList, model);
-            updateClientNameInListings(oldClientName, newClientName, lastShownPropertyList, model);
+            updateClientNameInListings(oldClientName, index, lastShownPropertyList, model);
         }
 
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, Messages.formatClient(editedClient)));
@@ -142,13 +141,13 @@ public class EditClientCommand extends EditCommand<Client> {
     }
 
     private void updateClientNameInListings(ClientName oldClientName,
-            ClientName newClientName, List<Property> propertyList, Model model) {
+            Index index, List<Property> propertyList, Model model) {
         int listingPosition = 0;
         for (; listingPosition < propertyList.size(); listingPosition++) {
             Property property = propertyList.get(listingPosition);
             EditPropertyDescriptor descriptor = new EditPropertyDescriptor();
             if (oldClientName.equals(property.getOwner())) {
-                descriptor.setOwner(newClientName);
+                descriptor.setOwner(index);
             }
             if (descriptor.isAnyFieldEdited()) {
                 try {

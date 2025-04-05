@@ -29,7 +29,7 @@ import seedu.address.model.property.Size;
  */
 public class ParserUtil {
     public static final String MESSAGE_INVALID_DATETIME =
-            "Invalid date: %s%nUse dd-mm-yyyy OR dd-mm-yyyy hhmm (e.g. 30-04-2025 1700).";
+            "Invalid date: %s%nUse dd-mm-yyyy hhmm (e.g. 30-04-2025 1700).";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a positive integer.";
 
     public static final DateTimeFormatter DATE_FORMAT_TEXT = DateTimeFormatter

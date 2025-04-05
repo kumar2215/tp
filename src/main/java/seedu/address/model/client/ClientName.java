@@ -12,7 +12,8 @@ import seedu.address.model.commons.Name;
 public class ClientName implements Name<Client> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names should only contain alphanumeric characters and spaces, it should not be blank"
+            + "and should not exceed 50 characters";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -37,6 +38,9 @@ public class ClientName implements Name<Client> {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidClientName(String test) {
+        if (test.length() > 50) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

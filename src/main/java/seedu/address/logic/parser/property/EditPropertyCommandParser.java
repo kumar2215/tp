@@ -3,8 +3,8 @@ package seedu.address.logic.parser.property;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
@@ -33,7 +33,7 @@ public class EditPropertyCommandParser extends EditCommandParser<Property> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PROPERTY_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_SIZE,
-                        PREFIX_DESCRIPTION, PREFIX_OWNER);
+                        PREFIX_DESCRIPTION, PREFIX_CLIENT_ID);
 
         Index index;
 
@@ -45,7 +45,7 @@ public class EditPropertyCommandParser extends EditCommandParser<Property> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PROPERTY_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_SIZE,
-                PREFIX_DESCRIPTION, PREFIX_OWNER);
+                PREFIX_DESCRIPTION, PREFIX_CLIENT_ID);
 
         EditPropertyDescriptor editPropertyDescriptor = new EditPropertyDescriptor();
 
@@ -67,9 +67,9 @@ public class EditPropertyCommandParser extends EditCommandParser<Property> {
             editPropertyDescriptor.setDescription(ParserUtil.parseDescription(argMultimap
                     .getValue(PREFIX_DESCRIPTION).get()));
         }
-        if (argMultimap.getValue(PREFIX_OWNER).isPresent()) {
-            editPropertyDescriptor.setOwner(ParserUtil.parseOwner(argMultimap
-                    .getValue(PREFIX_OWNER).get()));
+        if (argMultimap.getValue(PREFIX_CLIENT_ID).isPresent()) {
+            editPropertyDescriptor.setOwner(ParserUtil.parseIndex(argMultimap
+                    .getValue(PREFIX_CLIENT_ID).get()));
         }
 
         if (!editPropertyDescriptor.isAnyFieldEdited()) {
