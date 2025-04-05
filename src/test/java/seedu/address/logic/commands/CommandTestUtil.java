@@ -95,10 +95,10 @@ public class CommandTestUtil {
                 .build();
         DESC_MAPLE = new EditPropertyDescriptorBuilder().withPropertyName(VALID_PROPERTY_NAME_MAPLE)
                 .withAddress(VALID_ADDRESS_MAPLE).withPrice(VALID_PRICE_MAPLE).withSize(VALID_SIZE_MAPLE)
-                .withDescription(VALID_DESCRIPTION_MAPLE).withOwner(VALID_OWNER_MAPLE).build();
+                .withDescription(VALID_DESCRIPTION_MAPLE).build();
         DESC_ORCHID = new EditPropertyDescriptorBuilder().withPropertyName(VALID_PROPERTY_NAME_ORCHID)
                 .withAddress(VALID_ADDRESS_ORCHID).withPrice(VALID_PRICE_ORCHID).withSize(VALID_SIZE_ORCHID)
-                .withDescription(VALID_DESCRIPTION_ORCHID).withOwner(VALID_OWNER_ORCHID).build();
+                .withDescription(VALID_DESCRIPTION_ORCHID).build();
     }
 
     /**
