@@ -205,8 +205,9 @@ public class EditClientCommandTest extends EditCommandTest<Client> {
         Property firstProperty = methodModel.getFilteredPropertyList().get(INDEX_FIRST.getZeroBased());
 
         // Add an event with this client name
-        Event mockEvent = new Event(LocalDateTime.of(2025, 6, 6, 13, 0), EventType.valueOf("MEETING"),
-                originalClient.getFullName(), firstProperty.getFullName(), new Note("Lunch"));
+        Event mockEvent = new Event(LocalDateTime.of(2025, 6, 6, 13, 0),
+                EventType.valueOf("MEETING"), originalClient.getFullName(), firstProperty.getFullName(),
+                new Note("Lunch"));
         methodModel.addEvent(mockEvent);
 
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder()
@@ -215,8 +216,9 @@ public class EditClientCommandTest extends EditCommandTest<Client> {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setClient(originalClient, editedClient);
-        Event newMockEvent = new Event(LocalDateTime.of(2025, 6, 6, 13, 0), EventType.valueOf("MEETING"),
-                editedClient.getFullName(), firstProperty.getFullName(), new Note("Lunch"));
+        Event newMockEvent = new Event(LocalDateTime.of(2025, 6, 6, 13, 0),
+                EventType.valueOf("MEETING"), editedClient.getFullName(), firstProperty.getFullName(),
+                new Note("Lunch"));
         expectedModel.addProperty(MAPLE);
         expectedModel.addEvent(newMockEvent);
 
@@ -233,7 +235,8 @@ public class EditClientCommandTest extends EditCommandTest<Client> {
         // Add a property listing with this client as the owner
         Property mockProperty = new Property(new PropertyName("Maple Villa"),
                 new Address("ABC Address"), new Price((long) 222), Optional.of(new Size("100")),
-                Optional.of(new Description("Good flat")), originalClient.getFullName());
+                Optional.of(new Description("Good flat")), originalClient.getFullName()
+        );
         Model methodModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         methodModel.addProperty(mockProperty);
 
@@ -245,7 +248,8 @@ public class EditClientCommandTest extends EditCommandTest<Client> {
         expectedModel.setClient(originalClient, editedClient);
         Property newMockProperty = new Property(new PropertyName("Maple Villa"),
                 new Address("ABC Address"), new Price((long) 222), Optional.of(new Size("100")),
-                Optional.of(new Description("Good flat")), editedClient.getFullName());
+                Optional.of(new Description("Good flat")), editedClient.getFullName()
+        );
         expectedModel.addProperty(newMockProperty);
 
         assertCommandSuccess(editCommand, methodModel,

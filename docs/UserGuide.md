@@ -194,10 +194,11 @@ Examples:
 
 Creates a new property in REconnect.
 
-Format: `add_property prop/PROPERTY_NAME addr/ADDRESS price/PRICE [size/SIZE] [desc/DESCRIPTION]`
+Format: `add_property prop/PROPERTY_NAME owner/OWNER_NAME addr/ADDRESS price/PRICE [size/SIZE] [desc/DESCRIPTION]`
 
 * Adds a property with the specified details
 * The property name must be provided
+* The owner name must be provided
 * The address must be provided
 * The price must be provided
 * PRICE must be a positive integer and is in thousands of S$ and must be between 3 and 6 digits
@@ -207,14 +208,14 @@ Format: `add_property prop/PROPERTY_NAME addr/ADDRESS price/PRICE [size/SIZE] [d
 * Description if provided should be between 1 and 50 characters
 
 Examples:
-* `add_property prop/Sunset Villa addr/123 Sunset Way price/150 size/1200 desc/Beautiful sunset view`
-* `add_property prop/Ocean Heights addr/456 Marina Boulevard price/2800 size/1500`
+* `add_property prop/Maple Villa Condominium owner/Amy Bee addr/123 Maple Street price/2400 size/1000 desc/Spacious 4-bedroom home`
+* `add_property prop/Ocean Heights owner/Bob Choo addr/456 Marina Boulevard price/2800 size/1500`
 
 ### Editing a property : `edit_property`
 
 Edits an existing property in REconnect.
 
-Format: `edit_property INDEX [prop/PROPERTY_NAME] [addr/ADDRESS] [price/PRICE] [size/SIZE] [desc/DESCRIPTION]`
+Format: `edit_property INDEX [prop/PROPERTY_NAME] [owner/OWNER_NAME] [addr/ADDRESS] [price/PRICE] [size/SIZE] [desc/DESCRIPTION]`
 
 * Edits the property at the specified `INDEX`. The index refers to the index number shown in the displayed property list, and should be a _positive integer_ e.g. 1, 2, 3, ...
 * At least one of the optional fields must be provided.
@@ -228,17 +229,17 @@ Examples:
 
 Displays all properties that match the specified criteria for name keywords, address, price, size, and/or owner.
 
-Format: `find_property [name_keywords/KEYWORDS] [addr/ADDRESS] [price_</PRICE_BELOW] [price_>/PRICE_ABOVE] [size_</SIZE_BELOW] [size_>/SIZE_ABOVE] [owner/OWNER]`
+Format: `find_property [name_keywords/KEYWORDS] [owner/OWNER] [addr/ADDRESS] [price_</PRICE_BELOW] [price_>/PRICE_ABOVE] [size_</SIZE_BELOW] [size_>/SIZE_ABOVE]`
 
 * The order of the name keywords does not matter. e.g. `Maple Villa` will match `Villa Maple`.
 * The following prefixes can be used:
     * `name_keywords/KEYWORDS` to search property names by keywords (case-insensitive)
+    * `owner/OWNER` to search owner name by keywords (case-insensitive)
     * `addr/ADDRESS` to search by address (case-insensitive)
     * `price_</PRICE_BELOW` to search by price below a certain value
     * `price_>/PRICE_ABOVE` to search by price above a certain value
     * `size_</SIZE_BELOW` to search by size below a certain value
     * `size_>/SIZE_ABOVE` to search by size above a certain value
-    * `owner/OWNER` to search owner name by keywords (case-insensitive)
 * For the name keywords, only full words will be matched e.g. `Han` will not match `Hans`.
 * The address keyword will be matched as a substring.
 * The PRICE and SIZE keywords used must follow the constraints defined in `add_property` command.
@@ -502,6 +503,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 3. **Emojis not being shown on Linux devices**: Emojis may not be displayed correctly on Linux devices. This is due to the default font used in JavaFX not supporting emojis.
+4. **Overlapping property names or addresses**: Properties with different names but same addresses or properties with the same name but different addresses can be added, leading to potential overlaps. This will be fixed in a later release of the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -521,10 +523,10 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 | Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add Property**  | `add_property prop/PROPERTY_NAME addr/ADDRESS price/PRICE [size/SIZE] [desc/DESCRIPTION]` <br> e.g., `add_property prop/Sunset Villa addr/123 Sunset Way price/150 size/1200 desc/Beautiful sunset view`
-**Edit Property** | `edit_property INDEX [prop/PROPERTY_NAME] [addr/ADDRESS] [price/PRICE] [size/SIZE] [desc/DESCRIPTION]`<br> e.g.,`edit_property 1 price/1600 desc/Newly renovated`
+**Add Property**  | `add_property prop/PROPERTY_NAME owner/OWNER_NAME addr/ADDRESS price/PRICE [size/SIZE] [desc/DESCRIPTION]` <br> e.g., `add_property prop/Sunset Villa owner/Amy Bee addr/123 Sunset Way price/150 size/1200 desc/Beautiful sunset view`
+**Edit Property** | `edit_property INDEX [prop/PROPERTY_NAME] [owner/OWNER] [addr/ADDRESS] [price/PRICE] [size/SIZE] [desc/DESCRIPTION]`<br> e.g.,`edit_property 1 price/1600 desc/Newly renovated`
 **Delete Property** | `delete_property INDEX`<br> e.g., `delete_property 1`
-**Find Property** | `find_property [name_keywords/KEYWORDS] [addr/ADDRESS] [price_</PRICE_BELOW] [price_>/PRICE_ABOVE] [size_</SIZE_BELOW] [size_>/SIZE_ABOVE] [owner/OWNER]`<br> e.g., `find_property addr/123 Main St OR_price_>/1000 OR_size_>/500`
+**Find Property** | `find_property [name_keywords/KEYWORDS] [owner/OWNER] [addr/ADDRESS] [price_</PRICE_BELOW] [price_>/PRICE_ABOVE] [size_</SIZE_BELOW] [size_>/SIZE_ABOVE]`<br> e.g., `find_property addr/123 Main St OR_price_>/1000 OR_size_>/500`
 **List Properties** | `list_properties`
 
 ### Deal Commands

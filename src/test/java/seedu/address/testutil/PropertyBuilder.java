@@ -24,22 +24,22 @@ public class PropertyBuilder {
     public static final String DEFAULT_OWNER = "Amy Bee";
 
     private PropertyName propertyName;
+    private ClientName owner;
     private Address address;
     private Price price;
     private Optional<Size> size;
     private Optional<Description> description;
-    private ClientName owner;
 
     /**
      * Creates a {@code PropertyBuilder} with the default details.
      */
     public PropertyBuilder() {
         propertyName = new PropertyName(DEFAULT_PROPERTY_NAME);
+        owner = new ClientName(DEFAULT_OWNER);
         address = new Address(DEFAULT_ADDRESS);
         price = new Price(DEFAULT_PRICE);
         size = Optional.of(new Size(DEFAULT_SIZE));
         description = Optional.of(new Description(DEFAULT_DESCRIPTION));
-        owner = new ClientName(DEFAULT_OWNER);
     }
 
     /**
@@ -47,11 +47,11 @@ public class PropertyBuilder {
      */
     public PropertyBuilder(Property propertyToCopy) {
         propertyName = propertyToCopy.getFullName();
+        owner = propertyToCopy.getOwner();
         address = propertyToCopy.getAddress();
         price = propertyToCopy.getPrice();
         size = propertyToCopy.getSize();
         description = propertyToCopy.getDescription();
-        owner = propertyToCopy.getOwner();
     }
 
     /**
@@ -59,6 +59,14 @@ public class PropertyBuilder {
      */
     public PropertyBuilder withPropertyName(String propertyName) {
         this.propertyName = new PropertyName(propertyName);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Owner} of the {@code Property} that we are building.
+     */
+    public PropertyBuilder withOwner(String owner) {
+        this.owner = new ClientName(owner);
         return this;
     }
 
@@ -91,14 +99,6 @@ public class PropertyBuilder {
      */
     public PropertyBuilder withDescription(String description) {
         this.description = Optional.of(new Description(description));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Owner} of the {@code Property} that we are building.
-     */
-    public PropertyBuilder withOwner(String owner) {
-        this.owner = new ClientName(owner);
         return this;
     }
 

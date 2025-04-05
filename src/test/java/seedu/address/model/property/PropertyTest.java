@@ -92,9 +92,10 @@ public class PropertyTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Property.class.getCanonicalName() + "{propertyName=" + MAPLE.getFullName() + ", address="
-                + MAPLE.getAddress() + ", price=" + MAPLE.getPrice() + ", size=" + MAPLE.getSize() + ", description="
-                + MAPLE.getDescription() + ", owner=" + MAPLE.getOwner() + "}";
+        String expected = Property.class.getCanonicalName() + "{propertyName=" + MAPLE.getFullName()
+                + ", owner=" + MAPLE.getOwner() + ", address=" + MAPLE.getAddress()
+                + ", price=" + MAPLE.getPrice() + ", size=" + MAPLE.getSize() + ", description="
+                + MAPLE.getDescription() + "}";
         assertEquals(expected, MAPLE.toString());
     }
 }

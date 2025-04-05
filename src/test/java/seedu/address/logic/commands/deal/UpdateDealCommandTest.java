@@ -62,11 +62,9 @@ public class UpdateDealCommandTest {
                 new Address("Blk 456"));
         Property property = new Property(
                 new PropertyName(VALID_PROPERTY_NAME),
-                new Address("Blk 789"),
-                new Price(VALID_PRICE),
-                Optional.empty(),
-                Optional.empty(),
-                new ClientName("Owner"));
+                new Address("Blk 789"), new Price(VALID_PRICE), Optional.empty(),
+                Optional.empty(), new ClientName("Owner")
+        );
 
         model.addClient(buyer);
         model.addClient(seller);
@@ -252,11 +250,9 @@ public class UpdateDealCommandTest {
                 new Address("Blk 456"));
         Property property = new Property(
                 new PropertyName(VALID_PROPERTY_NAME),
-                new Address("Blk 789"),
-                new Price(VALID_PRICE),
-                Optional.empty(),
-                Optional.empty(),
-                new ClientName("Owner"));
+                new Address("Blk 789"), new Price(VALID_PRICE), Optional.empty(),
+                Optional.empty(), new ClientName("Owner")
+        );
 
         model.addClient(buyer);
         model.addClient(seller);
@@ -336,11 +332,9 @@ public class UpdateDealCommandTest {
                 new Address("Blk 456"));
         Property property = new Property(
                 new PropertyName(VALID_PROPERTY_NAME),
-                new Address("Blk 789"),
-                new Price(VALID_PRICE),
-                Optional.empty(),
-                Optional.empty(),
-                new ClientName("Owner"));
+                new Address("Blk 789"), new Price(VALID_PRICE), Optional.empty(),
+                Optional.empty(), new ClientName("Owner")
+        );
 
         model.addClient(buyer);
         model.addClient(seller);
@@ -410,11 +404,9 @@ public class UpdateDealCommandTest {
                 new Address("Blk 456"));
         Property property = new Property(
                 new PropertyName(VALID_PROPERTY_NAME),
-                new Address("Blk 789"),
-                new Price(VALID_PRICE),
-                Optional.empty(),
-                Optional.empty(),
-                new ClientName("Owner"));
+                new Address("Blk 789"), new Price(VALID_PRICE), Optional.empty(),
+                Optional.empty(), new ClientName("Owner")
+        );
 
         model.addClient(buyer);
         model.addClient(seller);

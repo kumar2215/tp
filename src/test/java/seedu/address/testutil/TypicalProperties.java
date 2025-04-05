@@ -25,11 +25,13 @@ public class TypicalProperties {
     public static final Property JURONG = new PropertyBuilder().withPropertyName("Jurong Lake Gardens HDB")
             .withAddress("336 Tah Ching Rd")
             .withPrice(600L).withSize("600")
-            .withDescription("Spacious 3-bedroom home").build();
+            .withDescription("Spacious 3-bedroom home")
+            .withOwner("James Tee").build();
     public static final Property PUNGGOL = new PropertyBuilder().withPropertyName("Punggol Waterway Ridges HDB")
             .withAddress("670C Edgefield Plains")
             .withPrice(900L).withSize("1200")
-            .withDescription("Spacious 5-bedroom home").build();
+            .withDescription("Spacious 5-bedroom home")
+            .withOwner("John Walker").build();
 
     private TypicalProperties() {} // prevents instantiation
 

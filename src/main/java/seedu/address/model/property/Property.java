@@ -107,11 +107,11 @@ public class Property implements Nameable<Property> {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("propertyName", propertyName)
+                .add("owner", owner)
                 .add("address", address)
                 .add("price", price)
                 .add("size", size)
                 .add("description", description)
-                .add("owner", owner)
                 .toString();
     }
 }
