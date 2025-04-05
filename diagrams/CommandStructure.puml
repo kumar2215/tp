@@ -16,7 +16,7 @@ Class EditEventCommandParser
 Class DeletePropertyCommandParser
 Class AddressBookParser
 
-FindDealCommand -up-|> Command
+FindDealCommand -down-|> Command
 AddClientCommand -up-|> Command
 EditEventCommand -up-|> Command
 DeletePropertyCommand -up-|> Command
