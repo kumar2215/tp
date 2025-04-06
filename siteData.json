@@ -64,7 +64,8 @@
         "non-functional-requirements": "Non-Functional Requirements",
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
-        "launch-and-shutdown": "Launch and shutdown"
+        "launch-and-shutdown": "Launch and shutdown",
+        "deal-management": "Deal management"
       },
       "headingKeywords": {}
     },

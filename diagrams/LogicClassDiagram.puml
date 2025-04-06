@@ -15,7 +15,6 @@ Class EditEventCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 
-
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager
 }
@@ -41,10 +40,11 @@ FindDealCommand -up-|> Command
 DeletePropertyCommand -up-|> Command
 AddClientCommand -up-|> Command
 EditEventCommand -up-|> Command
-LogicManager .left.> Command : <<call>>
 
-LogicManager --> Model
+LogicManager .left.> Command : <<call>>
 LogicManager --> Storage
+LogicManager --> Model
+
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
