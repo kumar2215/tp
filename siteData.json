@@ -63,8 +63,10 @@
         "use-cases": "Use cases",
         "non-functional-requirements": "Non-Functional Requirements",
         "glossary": "Glossary",
+        "appendix-planned-enhancements": "Appendix: Planned Enhancements",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
+        "client-management": "Client management",
         "deal-management": "Deal management"
       },
       "headingKeywords": {}

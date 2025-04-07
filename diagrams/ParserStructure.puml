@@ -4,56 +4,37 @@ skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
-package "Parser classes" {
-  Class "<<interface>>\nParser" as Parser
-  Class AddressBookParser
-  Class FindDealCommandParser
-  Class AddClientCommandParser
-  Class EditEventCommandParser
-  Class DeletePropertyCommandParser
-  Class CliSyntax
-  Class ParserUtil
-  Class ArgumentMultimap
-  Class ArgumentTokenizer
-  Class Prefix
-  Class ConnectivePrefix
+Class "{abstract}\nCommand" as Command
+Class XYZCommand
+
+package "Parser classes"{
+Class "<<interface>>\nParser" as Parser
+Class AddressBookParser
+Class XYZCommandParser
+Class CliSyntax
+Class ParserUtil
+Class ArgumentMultimap
+Class ArgumentTokenizer
+Class Prefix
+Class ConnectivePrefix
 }
 
-FindDealCommandParser .up..|> Parser
-AddClientCommandParser .up.|> Parser
-EditEventCommandParser .up.|> Parser
-DeletePropertyCommandParser .up.|> Parser
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> AddressBookParser
 
-AddressBookParser .down.> FindDealCommandParser : <<create>>
-AddressBookParser .down.> AddClientCommandParser : <<create>>
-AddressBookParser .down.> EditEventCommandParser : <<create>>
-AddressBookParser .down.> DeletePropertyCommandParser : <<create>>
+AddressBookParser .down.> XYZCommandParser: <<create>>
 
-FindDealCommandParser ...> ArgumentMultimap
-AddClientCommandParser ...> ArgumentMultimap
-EditEventCommandParser ...> ArgumentMultimap
-DeletePropertyCommandParser ...> ArgumentMultimap
-
-FindDealCommandParser ..> ArgumentTokenizer
-AddClientCommandParser ...> ArgumentTokenizer
-EditEventCommandParser ...> ArgumentTokenizer
-DeletePropertyCommandParser ...> ArgumentTokenizer
-
+XYZCommandParser ..> XYZCommand : <<create>>
+AddressBookParser ..> Command : <<use>>
+XYZCommandParser .up.|> Parser
+XYZCommandParser ..> ArgumentMultimap
+XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
-
-FindDealCommandParser ..> CliSyntax
-AddClientCommandParser ..> CliSyntax
-EditEventCommandParser ..> CliSyntax
-DeletePropertyCommandParser ..> CliSyntax
-
+XYZCommandParser ..> CliSyntax
 CliSyntax ..> Prefix
-
-FindDealCommandParser ..> ParserUtil
-AddClientCommandParser ..> ParserUtil
-EditEventCommandParser ..> ParserUtil
-DeletePropertyCommandParser ...> ParserUtil
-
+XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
+XYZCommand -up-|> Command
 ConnectivePrefix -left-|> Prefix
 @enduml

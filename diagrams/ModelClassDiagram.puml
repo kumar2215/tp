@@ -8,7 +8,6 @@ Package Model as ModelPackage <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class "<<interface>>\nPredicate" as Predicate
 Class AddressBook
 Class ModelManager
 Class UserPrefs
