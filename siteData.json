@@ -122,7 +122,7 @@
         "client-commands": "Client Commands",
         "adding-a-client-add-client": "Adding a client: add_client",
         "editing-a-client-edit-client": "Editing a client : edit_client",
-        "locating-clients-find-client": "Locating clients: find_client",
+        "finding-clients-find-client": "Finding clients: find_client",
         "listing-all-clients-list-clients": "Listing all clients : list_clients",
         "deleting-a-client-delete-client": "Deleting a client : delete_client",
         "property-commands": "Property Commands",
@@ -171,6 +171,14 @@
       "title": "John Doe's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/kumar2215.md",
+      "title": "Kumar's Project Portfolio Page",
+      "headings": {
+        "project-reconnect": "Project: REconnect"
       },
       "headingKeywords": {}
     }
