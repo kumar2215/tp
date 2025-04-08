@@ -42,10 +42,11 @@ AddClientCommand -up-|> Command
 EditEventCommand -up-|> Command
 
 LogicManager .left.> Command : <<call>>
-LogicManager --> Storage
-LogicManager --> Model
+LogicManager -right->"1" Storage
+LogicManager -down->Model : 1
 
 Storage --[hidden] Model
+CommandResult --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
 

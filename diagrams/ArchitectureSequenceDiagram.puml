@@ -31,8 +31,7 @@ deactivate storage
 storage --[STORAGE_COLOR]> logic
 deactivate storage
 
-logic --[LOGIC_COLOR]> ui
-deactivate logic
+logic --[LOGIC_COLOR]> ui : CommandResult
 
 ui--[UI_COLOR]> user
 deactivate ui
