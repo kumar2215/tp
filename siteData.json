@@ -67,6 +67,7 @@
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
         "client-management": "Client management",
+        "property-management": "Property management",
         "deal-management": "Deal management",
         "event-management": "Event management"
       },
